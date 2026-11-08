@@ -1,5 +1,38 @@
-# pratise
+# AI Coding 模拟机试 01：船舶信息管理 Demo
 
-Personal practice repository for AI Coding exercises.
+考试时长：60 分钟。技术栈：Python 3.11、FastAPI、SQLAlchemy、SQLite、HTML/CSS/JavaScript。
 
-Exercise materials will be maintained on separate branches so the default `main` branch remains clean.
+## 背景
+接手一个已有船舶管理 Demo，需要补齐查询、新增、编辑能力。请在现有代码上完成，不要推倒重做。
+
+## 需求
+1. 列表展示船名、MMSI、类型、状态、所属公司及操作。
+2. 支持按船名或 MMSI 搜索；支持按状态筛选（全部、航行中、停泊、维修中、离线）；两个条件可组合。
+3. 新增船舶：name 必填，去空格后 1–80 字符；MMSI 必填且为 9 位数字、唯一；ship_type/status 必填；owner 可选，最多 100 字符。
+4. 编辑已有船舶，回显数据；更新原记录，不得新增；未提交字段保持原值。
+5. 错误处理：字段校验失败 422；MMSI 重复 409；ID 不存在 404。页面显示可理解的错误和空状态。
+
+## 约束
+复用现有结构、模型、数据库和接口；不加登录、权限、地图、外部 API、部署或无关依赖；不得删除已有健康检查、列表和详情接口；不得删除或弱化测试来获得通过。
+
+## 验收
+- 首页正常展示，健康检查返回 200。
+- 列表、详情正常。
+- 船名/MMSI 搜索、状态筛选、组合筛选正确。
+- 新增合法记录成功；重复 MMSI 返回 409。
+- 无效 MMSI、空船名、超长字段返回 422。
+- 编辑更新原 ID；只更新一个字段时其他字段不变。
+- 不存在 ID 返回 404；无匹配结果显示空状态。
+
+## 运行
+```powershell
+conda activate aicoding-practice
+python -m pip install -r requirements.txt
+python -m uvicorn app.main:app --reload
+```
+浏览器：http://127.0.0.1:8000；接口文档：http://127.0.0.1:8000/docs
+
+测试：`python -m pytest -q`
+
+## 交付
+确保项目可启动；补充必要测试；最后说明完成项、测试结果和未完成项。不要为追求架构完美进行无关重构。

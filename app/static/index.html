@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>船舶信息管理</title><link rel="stylesheet" href="/static/styles.css"></head>
+<body>
+<main class="shell">
+<header><div><p class="eyebrow">MARITIME OPERATIONS</p><h1>船舶信息管理</h1><p>船舶基础信息与运行状态</p></div><button id="add">＋ 新增船舶</button></header>
+<section class="stats"><div>船舶总数<strong id="total">—</strong></div><div>航行中<strong id="sailing">—</strong></div><div>停泊中<strong id="moored">—</strong></div><div>需关注<strong id="attention">—</strong></div></section>
+<section class="panel"><h2>船舶列表</h2>
+<form id="filters"><input id="keyword" placeholder="搜索船名 / MMSI"><select id="status"><option value="all">全部状态</option><option value="sailing">航行中</option><option value="moored">停泊</option><option value="maintenance">维修中</option><option value="offline">离线</option></select><button>查询</button><button type="reset" class="secondary">重置</button></form>
+<p id="message" role="status"></p><div class="table-wrap"><table><thead><tr><th>船名</th><th>MMSI</th><th>类型</th><th>状态</th><th>所属公司</th><th>操作</th></tr></thead><tbody id="rows"><tr><td colspan="6">正在加载...</td></tr></tbody></table></div>
+</section></main>
+<dialog id="dialog"><form id="ship-form"><h2 id="form-title">新增船舶</h2><input name="name" placeholder="船名" required maxlength="80"><input name="mmsi" placeholder="9位 MMSI" required><select name="ship_type"><option value="cargo">货船</option><option value="tanker">油轮</option><option value="passenger">客船</option><option value="fishing">渔船</option><option value="patrol">公务船</option><option value="other">其他</option></select><select name="status"><option value="sailing">航行中</option><option value="moored">停泊</option><option value="maintenance">维修中</option><option value="offline">离线</option></select><input name="owner" placeholder="所属公司（选填）" maxlength="100"><div><button type="submit">保存</button><button type="button" id="cancel" class="secondary">取消</button></div></form></dialog>
+<script src="/static/app.js"></script></body></html>
